@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--Programmer Udezue oluomachi chimaobi-->
+<!--Age 17 years-->
+<!--Contact info +2349138280145-->
+<!--Please I want to sell this game to sponsor my career as a programer. if you are interested in buying this game or you have a job for me to do please chat me on whatsapp with this number +2349138280145 thanks. Enjoy the game-->
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="Tic Tac Toe, Udezue Oluomachi Chimaobi, Codes by Udezue Oluomachi Chimaobi, young programmers, STAR Systems, Web Lords, Cyber Lords, oluomachi"/>
+        <meta name="description" content="This is a game made with HTML, CSS and Vanilla Javascript. It was created by Udezue Oluomachi Chimaobi at the age of 17."/>
+        <title>Tic Tac Toe</title>
+        <link rel="stylesheet" href="./animate.css"/>
+        <link rel="stylesheet" href="./css/all.css"/>
+        <script src="./ui.js"></script>
+        <style type="text/css">
+            * {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                letter-spacing: 2px;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                scroll-behavior: smooth;
+            }
+            html, body {
+                background:#F4F5F6;
+                padding: 8px;
+            }
+            .game-board {
+                height: 40vw;
+                width: 40vw;
+                max-height: 200px;
+                max-width: 200px;
+                margin: auto;
+                margin-top: 10vh;
+            }
+            .game-board-row {
+                width: 100%;
+                height: 33.33%;
+                display: flex;
+                justify-content: center;
+            }
+            .game-board button {
+                height: 100%;
+                width: 33.33%;
+                border: 2px solid rgb(20, 3, 173);
+                cursor: pointer;
+                font-size: x-large;
+                background: transparent;
+                color: #404040;
+            }
+            .game-board button:hover , #game-mode:hover {
+                background: hsla(0, 0%, 91%, 0.911);
+            }
+            .game-board button:focus , #game-mode:focus , .go-online:focus , .play-with-mode:focus {
+                outline: none;
+            }
+            #scores {
+                margin: 10px;
+            }
+            .app-body, .menu-main-cont {
+                height: 70vh;
+                width: 60vw;
+                max-height: 600px;
+                max-width: 350px;
+                min-width: 250px;
+                min-height: 400px;
+                padding: 9px;
+                border-radius: 10px;
+                margin: auto;
+                margin-top: 10vh;
+                background:#F4F5F6;
+                box-shadow: 5px 5px 20px #F4F5F638, -5px -5px 20px#031f3b38, 5px -5px 20px #F4F5F638, -5px 5px 20px#F4F5F638;
+            }
+            .menu-main-cont {
+                position: relative;
+                z-index: 1;
+            }
+            .menu-outer-cont {
+                height: 100vh;
+                width: 100vw;
+                background: #00000044;
+                position: fixed;
+                top: 0;
+                left: 0;
+                overflow-y: auto;
+            }
+            .heading , .heading2 {
+                color: rgb(20, 3, 173);
+                font-weight: bold;
+                margin-top: 5vh;
+                text-align: center;
+            }
+            .selection-div {
+                margin: auto;
+                margin-top: 25%;
+                text-align: center;
+            }
+            #game-mode {
+              /*  font-size: large;*/
+                padding: 9px;
+                border-radius: 5px;
+                cursor: pointer;
+                color: #272727;
+                border-color:rgb(20, 3, 173)
+            }
+            .go-online , .play-with-mode {
+                display: block;
+                margin: auto;
+                width: 80%;
+                border: none;
+                height: max-content;
+                padding: 15px;
+                background: rgb(20, 3, 173);
+                border-radius: 7px;
+           /*     cursor: pointer;
+        */        text-align: center;
+            }
+        /*    .go-online:hover , .play-with-mode:hover {
+                background:  rgba(20, 3, 173, 0.767);
+            }
+     */       .go-online span , .play-with-mode span {
+                color: #ffffff;
+                font-size: large;
+            }
+            .play-with-mode {
+                margin-top: 20%;
+            }
+            .go-online {
+                margin-top: 10%;
+            }
+            .toggle-menu {
+                position: absolute;
+                top: 0;
+                margin: 15px;
+                right: 0;
+                cursor: pointer;
+                text-align: center;
+            }
+            .toggle-menu:hover {
+                color: rgb(20, 3, 173);
+            }
+            a {
+                text-decoration: none;
+            }
+            .contact-links {
+                height: max-content;
+                width: max-content;
+                margin: auto;
+                margin-top: 25px;
+                text-align: center;
+            }
+            .contact-links a {
+                font-size: x-large;
+                margin: 10px;
+                color: #444444;
+            }
+            .fa-bars {
+              color: rgb(20, 3, 173);
+            }
+            .menu-main-cont .toggle-menu {
+              background: #000000;
+              height: 20px;
+              width: 20px;
+              border-radius: 100%;
+            }
+            .menu-main-cont .toggle-menu span {
+              color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="caution">
+            <source src="./caution sound.wav" type="audio/wav"/>
+        </audio>
+        <audio id="click1">
+            <source src="./click sound.wav" type="audio/wav"/>
+        </audio>
+        <audio id="click2">
+            <source src="./other click sound.wav" type="audio/wav"/>
+        </audio>
+        <audio id="win1">
+            <source src="./wining sound.wav" type="audio/wav"/>
+        </audio>
+        <audio id="win2">
+            <source src="./winning sound 2.wav" type="audio/wav"/>
+        </audio>
+        <h1 class="heading">Tic Tac Toe</h1>
+        <div class="menu-outer-cont animate__animated animate__fadeIn">
+            <div class="menu-main-cont">
+                <div class="toggle-menu" onclick="toggleMenu();">
+                    <span title="close menu">&times;</span>
+                </div>
+                <h2 class="heading2">Tic Tac Toe</h2>
+                <div class="selection-div">
+                    <select id="game-mode">
+                      <!--  <option value="default">Select game mode</option> -->
+                        <option value="default">Single player (default)</option>
+                      <!--  <option value="multi">Multi player</option> -->
+                    </select>
+                </div>
+                <button id="go" class="play-with-mode animate__animated animate__bounce" onclick="toggleMenu();startGame(); ripple('go');">
+                    <span>Play</span>
+                </button>
+                <div class="contact-links">
+                    <a href="https://facebook.com/udezueoluomachi.chimaobi" title="follow me on facebook" class="fab fa-facebook"></a>
+                    <a href="https://wa.link/8bg7fa" title="contact me on whatsapp" class="fab fa-whatsapp"></a>
+                    <a href="https://github.com/udezueoluomachi" title="my github profile" class="fab fa-github"></a>
+                </div>
+
+              <!-- <div class="go-online-cont">
+                    <div class="go-online-guide">
+                        <h2>Please fill the form to play the multiplayer mode. Also ask your friend to do the same on their own device.</h2>
+                        <input type="text" id="name" placeholder="Type your full name here"/>
+                        <br/>
+                        <input type="button" onclick="submitName" value="Continue"/>
+                    </div>
+                    <button class="go-online">
+                        <span>Connect with friends</span>
+                    </button>
+                </div> -->
+            </div>
+        </div>
+        <div class="app-body">
+            <p id="scores">
+                Scores
+                <span id="xScore">0</span>
+                :
+                <span id="oScore">0</span>
+            </p>
+            <div class="toggle-menu" onclick="toggleMenu();">
+                <span title="open menu"><span class="fas fa-bars"></span> Menu</span>
+            </div>
+            <h2 class="heading2">Single player</h2>
+            <div class="game-board">
+                <!--This is the game board-->
+                <div class="game-board-row">
+                    <button style="border-top-color: #F4F5F6; border-left-color: #F4F5F6;"></button>
+                    <button style="border-top-color: #F4F5F6;"></button>
+                    <button style="border-top-color: #F4F5F6; border-right-color: #F4F5F6;"></button>
+                </div>
+                <div class="game-board-row">
+                    <button style="border-left-color: #F4F5F6;"></button>
+                    <button></button>
+                    <button style="border-right-color: #F4F5F6;"></button>
+                </div>
+                <div class="game-board-row">
+                    <button style="border-bottom-color: #F4F5F6; border-left-color: #F4F5F6;"></button>
+                    <button style="border-bottom-color: #F4F5F6;"></button>
+                    <button style="border-bottom-color: #F4F5F6; border-right-color: #F4F5F6;"></button>
+                </div>
+            </div>
+        </div>
+        <!--My javascript-->
+        <!--I am using pure javascript-->
+        <script type="text/javascript">
+            // i am creating my custom selectors to reduce typing
+            const $only = elem => document.querySelector(elem);
+            // this returns the first result of the selection from my dom
+            const $all = elem => document.querySelectorAll(elem);
+            // this returns all the result of the selection from my dom
+            //these are the core ai control commands
+            const defenses = [
+            [1,2,3],
+            [1,3,2],
+            [3,2,1],
+            [4,5,6],
+            [4,6,5],
+            [6,5,4],
+            [7,8,9],
+            [7,9,8],
+            [8,9,7],
+            [1,5,9],
+            [1,9,5],
+            [9,5,1],
+            [3,5,8],
+            [3,8,5],
+            [8,5,3],
+            [1,5,9],
+            [1,9,5],
+            [9,5,1],
+            [3,6,7],
+            [3,9,7],
+            [7,9,6],
+            [1,4,7],
+            [1,7,4],
+            [7,4,1],
+            [2,5,8],
+            [2,8,5],
+            [8,5,2],
+            [3,6,9],
+            [3,9,6],
+            [9,6,3],
+            [3,5,7],
+            [3,7,5],
+            [7,5,3]
+            ];
+            const winningCases = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+            [1,4,7],
+            [2,5,8],
+            [3,6,9],
+            [1,5,9],
+            [3,5,7]
+            ];
+            // lets begin
+            const gameBoard = $only(".game-board");
+            const xScoreCont = $only("#xScore");
+            const oScoreCont = $only("#oScore");
+            const caution = $only("#caution");
+            const click1 = $only("#click1");
+            const click2 = $only("#click2");
+            const win1 = $only("#win1");
+            const win2 = $only("#win2");
+            const menuOuterCont = $only(".menu-outer-cont");
+            const menuMainCont = $only(".menu-main-cont");
+            const gameMode = $only("#game-mode").value;
+            let menuIsVisible = true;
+            let xScore = 0;
+            let oScore = 0;
+            let hasWon = false;
+         //   let randomnized = false;
+            //applying an id to all the game-board buttons and some eventListeners
+            // one more thing to note is that in this game, apart from the multiplayer section, every player is x
+            const gameBoardButtons = $all(".game-board button");
+            for(let i = 0; i < gameBoardButtons.length;) {
+                gameBoardButtons[i].id = "gameBoardBtn" + i+1;
+                gameBoardButtons[i].addEventListener("click", e => processAndProceed(e.target.id));
+                i++;
+            }
+            let isAllowedtoPlay = true;
+            let hasPlayed = false;
+            function processAndProceed(gameBoardBtnId) {
+                if ((!hasPlayed && isAllowedtoPlay) && $only("#" + gameBoardBtnId).innerText === "") {
+                    $only("#" + gameBoardBtnId).innerText = "x";
+                    hasPlayed = true;
+                    isAllowedtoPlay = false;
+                    checkWin();
+                    clearGame();
+                    click1.play();
+                    setTimeout(systemPlays,1000);
+                } else {
+                    caution.play();
+                    setTimeout(e => alert("You are not allowed to play!"), 400);
+                }
+            }
+            function systemPlays() {
+                tryToWin();
+                defend();
+                let randomIndex = Math.floor(Math.random() * 9 + 1);
+                if(gameBoardButtons[randomIndex-1].innerText === "" /*&& !randomnized*/) {
+                    if(!isAllowedtoPlay && hasPlayed) {
+                        gameBoardButtons[randomIndex-1].innerText = "o";
+                        isAllowedtoPlay = true;
+                        hasPlayed = false;
+                        // randomnized = true;
+                        checkWin();
+                        clearGame();
+                    }
+                }
+                click2.play();
+            }
+            function defend() {
+                defenses.forEach( ([a,b,c]) => {
+                        if(!isAllowedtoPlay && hasPlayed) {
+                            if((gameBoardButtons[a-1].innerText && gameBoardButtons[b-1].innerText) === "x") {
+                                if(gameBoardButtons[c-1].innerText === "") {
+                                    gameBoardButtons[c-1].innerText = "o";
+                                    isAllowedtoPlay = true;
+                                    hasPlayed = false;
+                                    checkWin();
+                                    clearGame();
+                                }
+                            }
+                        }
+                });
+            }
+            function tryToWin() {
+                defenses.forEach( ([a,b,c]) => {
+                        if(!isAllowedtoPlay && hasPlayed) {
+                            if((gameBoardButtons[a-1].innerText && gameBoardButtons[b-1].innerText) === "o") {
+                                if(gameBoardButtons[c-1].innerText === "") {
+                                    gameBoardButtons[c-1].innerText = "o";
+                                    isAllowedtoPlay = true;
+                                    hasPlayed = false;
+                                    checkWin();
+                                    clearGame();
+                                }
+                            } else {
+                              defend();
+                            }
+                        }
+                });
+            }
+            function checkWin() {
+                winningCases.forEach(winCase => {
+                    if(winCase.every(winCase => gameBoardButtons[winCase-1].innerText === "x")) {
+                        xScore ++;
+                        xScoreCont.innerText = xScore;
+                        hasWon = true;
+                        clearGame();
+                        win2.play();
+                    }
+                    if(winCase.every(winCase => gameBoardButtons[winCase-1].innerText === "o")) {
+                        oScore ++;
+                        oScoreCont.innerText = oScore;
+                        hasWon = true;
+                        clearGame();
+                        win1.play();
+                    }
+                });
+            }
+            function clearGame() {
+                const gameBoardBtnIndexes = [0,1,2,3,4,5,6,7,8];
+                if(gameBoardBtnIndexes.every(e => gameBoardButtons[e].innerText !=="") || hasWon) {
+                 //   randomnized = false;
+                    hasWon = false;
+                    setTimeout(e => {
+                        for(let i = 0; i < gameBoardButtons.length; i++) {
+                            gameBoardButtons[i].innerText = "";
+                        }
+                    },500);
+                }
+            }
+            function toggleMenu() {
+                if(menuIsVisible) {
+                    menuOuterCont.classList.toggle("animate__fadeIn");
+                    setTimeout(e => menuOuterCont.style.display = "none" , 500);
+                    menuIsVisible = false;
+                } else {
+                    menuOuterCont.style.display = "block";
+                    menuOuterCont.classList.toggle("animate__fadeIn");
+                    menuIsVisible = true;
+                }
+            }
+            function startGame() {
+                for(let i = 0; i < gameBoardButtons.length; i++) {
+                    gameBoardButtons[i].innerText = ""
+                }
+                hasPlayed = false;
+                isAllowedtoPlay = true;
+                oScore = 0;
+                oScoreCont.innerText = oScore;
+                xScore = 0;
+                xScoreCont.innerText = xScore;
+            }
+            /* due to inavailability of time, the multiplayer function has been postponed to a later date*/
+        </script>
+    </body>
+</html>
